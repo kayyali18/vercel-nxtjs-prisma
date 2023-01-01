@@ -1,23 +1,15 @@
 import React, { useEffect } from 'react';
-import {
-	ClientSafeProvider,
-	getProviders,
-	signIn,
-	useSession,
-} from 'next-auth/react';
+import { getProviders, getSession, signIn } from 'next-auth/react';
 import { CommonProviderOptions } from 'next-auth/providers';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 
-const SignIn: React.FC<any> = ({ providers }) => {
-	const { data: session, status } = useSession();
+const SignIn: React.FC<any> = ({ providers, session }) => {
 	const router = useRouter();
-
-	console.log(session, status);
 
 	useEffect(() => {
 		if (session) router.push('/');
-	});
+	}, []);
 
 	return (
 		<>
@@ -36,8 +28,9 @@ const SignIn: React.FC<any> = ({ providers }) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	const providers = await getProviders();
+	const session = await getSession({ req: ctx.req });
 	return {
-		props: { providers },
+		props: { providers, session },
 	};
 };
 

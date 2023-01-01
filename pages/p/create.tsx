@@ -19,7 +19,7 @@ const Draft: React.FC = () => {
 				body,
 			});
 
-			await Router.push('/drafts');
+			await Router.push('/p/draft');
 		} catch (err) {
 			console.error(err);
 		}
