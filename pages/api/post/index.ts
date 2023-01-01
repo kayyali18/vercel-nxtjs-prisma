@@ -1,14 +1,10 @@
-import {
-	NextApiHandler,
-	NextApiRequest,
-	NextApiResponse,
-} from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 import prisma from '../../../lib/prisma';
 
 // POST api/post
 // Required fields in body: title, content
-export default async function postHandler<NextApiHandler>(
+export default async function postHandler(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
