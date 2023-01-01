@@ -10,8 +10,19 @@ const Draft: React.FC = () => {
 
 	const submitData = async (e: React.SyntheticEvent) => {
 		e.preventDefault();
-		// TODO
-		// You will implement this next ...
+
+		try {
+			const body = JSON.stringify({ title, content });
+			await fetch('/api/post', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body,
+			});
+
+			await Router.push('/drafts');
+		} catch (err) {
+			console.error(err);
+		}
 	};
 
 	return (
