@@ -6,7 +6,8 @@ import { signOut, useSession } from 'next-auth/react';
 
 const Header: React.FC = () => {
 	const router = useRouter();
-	const isActive: (pathname: string) => boolean = (pathname) => router.pathname === pathname;
+	const isActive: (pathname: string) => boolean = (pathname) =>
+		router.pathname === pathname;
 
 	const { data: session, status } = useSession();
 
@@ -121,8 +122,8 @@ const Header: React.FC = () => {
 						Feed
 					</a>
 				</Link>
-				<Link href="/drafts">
-					<a data-active={isActive('/drafts')}>My drafts</a>
+				<Link href="/p/draft">
+					<a data-active={isActive('/p/draft')}>My drafts</a>
 				</Link>
 				<style jsx>{`
 					.bold {
